@@ -11,7 +11,7 @@ resource "crafting_snapshot" "base" {
   name = "base-dev-r1"
   type = "WORKSPACE"
   folder = "shared"
-  script = << EOT
+  script = <<EOT
   #!/bin/bash
   apt update ...
   apt install ...
@@ -33,7 +33,7 @@ resource "crafting_snapshot" "home" {
   excludes = [
     ".ssh"
   ]
-  script = << EOT
+  script = <<EOT
   ...
   EOT
   base_snapshot = crafting_snapshot.base.full_name
@@ -49,7 +49,7 @@ resource "crafting_snapshot" "mysql" {
   app_definition = crafting_app.hello.definition
   workload = "mysql" # The target workload to take snapshot
   workspace = "hello" # The workspace to run the script
-  script = << EOT
+  script = <<EOT
   EOT
 }
 ```
