@@ -26,8 +26,8 @@ resource "crafting_org_settings" "settings" {
 * `sandbox_always_on_expiry` - (Optional)(int). The max duration when a sandbox is pinned, unit minute"
 * `favourite_apps` - (Optional)(list[string]). The org level favourite apps.
 * `sandbox_max_idle_duration` - (Optional)(int). The max duration when a sandbox is idled before being auto suspended, unit minute.
-* `max_pinned_sandboxes` - (Optional)(int). The max number of pinned sandboxes
-* `sandbox_retention` - (Optional)(int). The max duration of a suspended sandbox before being deleted automatically, unit minute
+* `max_pinned_sandboxes` - (Optional)(int). The max number of pinned sandboxes.
+* `sandbox_retention` - (Optional)(int). The max duration of a suspended sandbox before being deleted automatically, unit minute.
 * `base_images` - (Optional)(list[object]). Optional base images.
   * `name` - (Required)(string). The name for display purpose.
   * `image` - (Required)(string). The full image name and tag.
