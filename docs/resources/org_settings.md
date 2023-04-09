@@ -32,7 +32,7 @@ resource "crafting_org_settings" "settings" {
   * `name` - (Required)(string). The name for display purpose.
   * `image` - (Required)(string). The full image name and tag.
 * `default_base_image` - (Optional)(string). The container image will be used by all workspaces with 'base_snapshot' unspecified.
-* `onboarding` - (Optional)(string). Content would be displayed in some key pages. The content is in markdown (github flavor).
+* `onboarding` - (Optional)(string). Guide each new user in the organization to complete a list of onboarding steps before creating sandboxes.
 
 ## Attributes Reference
 
