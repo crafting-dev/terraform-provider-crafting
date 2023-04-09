@@ -26,7 +26,7 @@ resource "crafting_template" "hello" {
 The following arguments are supported:
 
 * `name` - (Required)(string) The name of the template.
-* `definition` - (Required)(string) The template definition in YAML or JSON.
+* `definition` - (Required)(string) The sandbox definition in YAML or JSON.
 * `folder` - (Optional)(string) The full path of the containing folder.
 
 ## Attributes Refernece.

@@ -30,6 +30,6 @@ In addition to all arguments above, the following attributes are exported.
 * `org_id` - (string) The org ID this object belongs to.
 * `parent_id` - (string) The ID of the containing folder.
 * `labels`- (map[string,string]) The labels attached to the object.
-* `definition` - (string) The template definition in YAML.
+* `definition` - (string) The sandbox definition in YAML.
 
 
