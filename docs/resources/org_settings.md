@@ -23,7 +23,7 @@ resource "crafting_org_settings" "settings" {
 
 * `overview` - (Optional)(string). The custom overview shown on the home page. The content is in markdown (github flavor).
 * `sandbox_shared_mode` - (Optional)(string). The default sandbox shared mode. Available values are: DEFAUTL, EXPLICIT, PRIVATE.
-* `sandbox_always_on_expiry` - (Optional)(int). The max duration when a sandbox is put in ALWAYS_ON operational state, unit minute"
+* `sandbox_always_on_expiry` - (Optional)(int). The max duration when a sandbox is pinned, unit minute"
 * `favourite_apps` - (Optional)(list[string]). The org level favourite apps.
 * `sandbox_max_idle_duration` - (Optional)(int). The max duration when a sandbox is idled before being auto suspended, unit minute.
 * `max_pinned_sandboxes` - (Optional)(int). The max number of pinned sandboxes
