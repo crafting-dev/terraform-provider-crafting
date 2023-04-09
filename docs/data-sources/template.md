@@ -1,18 +1,18 @@
-# Data Source: crafting_app
+# Data Source: crafting_template
 
-`crafting_app` can access to a specific app.
+`crafting_template` can access to a specific template.
 
 ## Example Usage
 
 ```terraform
-data "crafting_app" "hello"{
+data "crafting_template" "hello"{
     name = "hello"
     folder = "frontend"
 }
 ```
 
 ## Arguments Reference
-* `name` - (Required)(string) The name of the app.
+* `name` - (Required)(string) The name of the template.
 * `folder` - (Optional)(string) The full path of the containing folder.
 
 ## Attributes Reference
@@ -30,6 +30,6 @@ In addition to all arguments above, the following attributes are exported.
 * `org_id` - (string) The org ID this object belongs to.
 * `parent_id` - (string) The ID of the containing folder.
 * `labels`- (map[string,string]) The labels attached to the object.
-* `definition` - (string) The app definition in YAML.
+* `definition` - (string) The template definition in YAML.
 
 

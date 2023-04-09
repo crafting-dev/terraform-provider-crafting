@@ -1,12 +1,12 @@
-# Resource: crafting_app
+# Resource: crafting_template
 
-An `crafting_app` resource makes sure the corresponding App is created in the organization
+An `crafting_template` resource makes sure the corresponding Template is created in the organization
 
 
 ## Example Usage
 
 ``` terraform
-resource "crafting_app" "hello" {
+resource "crafting_template" "hello" {
   name = "hello"
   folder = "a/b/c"
   definition = <<-EOT
@@ -25,8 +25,8 @@ resource "crafting_app" "hello" {
 
 The following arguments are supported:
 
-* `name` - (Required)(string) The name of the app.
-* `definition` - (Required)(string) The app definition in YAML or JSON.
+* `name` - (Required)(string) The name of the template.
+* `definition` - (Required)(string) The template definition in YAML or JSON.
 * `folder` - (Optional)(string) The full path of the containing folder.
 
 ## Attributes Refernece.

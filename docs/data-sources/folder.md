@@ -13,7 +13,7 @@ data "crafting_folder" "parent"{
 
 ## Arguments Reference
 
-* `name` - (Required)(string) The name of the app.
+* `name` - (Required)(string) The name of the folder.
 * `folder` - (Optional)(string) The full path of the containing folder.
 
 ## Attributes Reference
