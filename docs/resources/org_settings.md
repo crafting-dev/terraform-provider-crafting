@@ -2,6 +2,8 @@
 
 A `crafting_org_settings` update the org settings.
 
+~> **NOTE:** At most one `crafting_org_settings` can be provided.
+
 ## Example Usage
 
 ```terraform
