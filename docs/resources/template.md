@@ -1,23 +1,37 @@
-# Data Source: crafting_app
+# Resource: crafting_template
 
-`crafting_app` can access to a specific app.
+An `crafting_template` resource makes sure the corresponding Template is created in the organization
+
 
 ## Example Usage
 
-```terraform
-data "crafting_app" "hello"{
-    name = "hello"
-    folder = "frontend"
+``` terraform
+resource "crafting_template" "hello" {
+  name = "hello"
+  folder = "a/b/c"
+  definition = <<-EOT
+  ---
+  workspaces:
+  - name: hello
+    checkouts:
+      - path: src/hello
+        repo:
+          git: git@github.com:crafting-dev/hello
+  EOT
 }
 ```
 
 ## Arguments Reference
-* `name` - (Required)(string) The name of the app.
+
+The following arguments are supported:
+
+* `name` - (Required)(string) The name of the template.
+* `definition` - (Required)(string) The sandbox definition in YAML or JSON.
 * `folder` - (Optional)(string) The full path of the containing folder.
 
-## Attributes Reference
+## Attributes Refernece.
 
-In addition to all arguments above, the following attributes are exported.
+In addition to all arguments above, the following attributes are exported
 
 * `id` - (string) The object ID.
 * `full_name` - (string) The full name of the object, including folders as path.
@@ -30,6 +44,4 @@ In addition to all arguments above, the following attributes are exported.
 * `org_id` - (string) The org ID this object belongs to.
 * `parent_id` - (string) The ID of the containing folder.
 * `labels`- (map[string,string]) The labels attached to the object.
-* `definition` - (string) The app definition in YAML.
-
 

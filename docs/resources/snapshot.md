@@ -46,7 +46,7 @@ Dependency Snapshot
 resource "crafting_snapshot" "mysql" {
   name = "mysql-dev-r1"
   type = "DEPENDENCY"
-  app_definition = crafting_app.hello.definition
+  sandbox_definition = crafting_template.hello.definition
   workload = "mysql" # The target workload to take snapshot
   workspace = "hello" # The workspace to run the script
   script = <<EOT
@@ -60,7 +60,7 @@ Container Snapshot
 resource "crafting_snapshot" "container" {
   name = "container-dev-r1"
   type = "CONTAINER"
-  app_definition = crafting_app.hello.definition
+  sandbox_definition = crafting_template.hello.definition
   workload = "container1" # The target workload to take snapshot
   workspace = "hello" # The workspace to run the script
   script = <<EOT
@@ -72,11 +72,11 @@ resource "crafting_snapshot" "container" {
 * `name` - (Required)(string) The name of the snapshot.
 * `folder` - (Optional)(string) The full path of the containing folder.
 * `type` - (Required)(string) The snapshot type, one of: `WORKSPACE`, `HOME`, `DEPENDENCY`, `CONTAINER`.
-* `app_definition` - (Conditional)(string) Optional for `WORKSPACE`/`HOME`, required for `DEPENDENCY`/`CONTAINER`. The App Definition to create a sandbox.
-* `workspace` - (Conditional)(string) Required if `app_definition` and `script` are specified. The workspace to run the script.
+* `sandbox_definition` - (Conditional)(string) Optional for `WORKSPACE`/`HOME`, required for `DEPENDENCY`/`CONTAINER`. The Sandbox  Definition to create a sandbox.
+* `workspace` - (Conditional)(string) Required if `sandbox_definition` and `script` are specified. The workspace to run the script.
 * `workload` - (Conditional)(string) Required for `DEPENDENCY`/`CONTAINER`, must be unspecified for `WORKSPACE`/`HOME`. The target workload to take snapshot from.
 * `script` - (Optional)(string) The script to run before taking a snapshot.
-* `base_snapshot` - (Conditional)(string) Only available for `HOME` snapshot without `app_definition`. This is used to create the workspace.
+* `base_snapshot` - (Conditional)(string) Only available for `HOME` snapshot without `sandbox_definition`. This is used to create the workspace.
 * `includes` - (Conditional)(list[string]) Only available for `HOME` snapshot to create the includes list (this will overwrite whatever exists in the workspace).
 * `excludes` - (Conditional)(list[string]) Only available for `HOME` snapshot to create the excludes list (this will overwrite whatever exists in the workspace).
 
