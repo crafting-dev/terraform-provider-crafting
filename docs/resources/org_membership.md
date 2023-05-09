@@ -1,6 +1,6 @@
 # Resource: crafting_org_membership
 
-A `crafting_org_membership` adds a user to the org.
+A `crafting_org_membership` resource ensures the membership of a user in the organization.
 
 ## Example Usage
 
@@ -15,14 +15,14 @@ resource "crafting_org_membership" "one_member" {
 
 ## Arguments Reference
 
-* `email` - (Required)(string). User email or service account email.
-* `admin` - (Optional)(bool). If the member is an org-admin. Default is false.
-* `disabled` - (Optional)(bool). if the member is disabled. Default is false.
-* `tags` - (Optional)(list[string]). List of strings as tags of this member.
+* `email` - (Required) User email or service account email.
+* `admin` - (Optional) If the member is an org-admin. Default is false.
+* `disabled` - (Optional) if the member is disabled. Default is false.
+* `tags` - (Optional) List of strings as tags of this member.
 
 ## Attributes Reference
 
-In addition to all arguments above, the following attributes are exported
+In addition to all arguments above, the following attributes are exported:
 
 * `kind` - (string) Membership kind.
-* `user_id` - (string) The user id of the membership.
+* `user_id` - (string) The ID of the user.

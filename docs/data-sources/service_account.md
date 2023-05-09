@@ -1,37 +1,37 @@
 # Data Source: crafting_service_account
 
-`crafting_service_account` can access a specific service account.
+Use this data source to retrieve information of a Service Account.
 
 ## Example Usage
 
 ```terraform
-data "crafting_service_account" "a1"{
+data "crafting_service_account" "a1" {
     account_name "account1"
 }
-data "crafting_service_account" "a2"{
+data "crafting_service_account" "a2" {
     email =  "account2@org.sandbox"
 }
 ```
 
 ## Arguments Reference
 
-* `account_name` - (Optional)(string). The account name of the service account. If specified, the `email` must  be unspecified.
-* `name` - (Optional)(string). The name of the service account(Actually email). If specified, the `account_name` must be unspecified.
+* `account_name` - (Optional) The account name of the service account. If specified, the `email` must be unspecified.
+* `email` - (Optional) The email of the service account. If specified, the `account_name` must be unspecified.
 
 ## Attributes Reference
 
-In addition to all arguments above, the following attributes are exported
+In addition to all arguments above, the following attributes are exported:
 
-* `id` - (string) The object ID.
-* `full_name` - (string) The full name of the object, including folders as path.
-* `owner` - (object) The owner of the object.
-    * `id` - (string) User ID.
-    * `name` - (string) The name (actually email) of the user.
-* `creator` - (object) The creator of the object:
-    * `id` - (string) User ID.
-    * `name` - (string) The name (actually email) of the user.
-* `org_id` - (string) The org ID this object belongs to.
-* `parent_id` - (string) The ID of the containing folder.
-* `labels`- (map[string,string]) The labels attached to the object.
-* `email` - (string) The email of the service account.
-* `display_name` - (string) The email of the display_name.
+* `id` - The object ID.
+* `full_name` - The full name of the object, including folders as path, if RBAC is enabled.
+* `owner` - The owner of the object.
+    * `id` - User ID.
+    * `name` - The name (email) of the user.
+* `creator` - The creator of the object:
+    * `id` - User ID.
+    * `name` - The name (email) of the user.
+* `org_id` - The org ID this object belongs to.
+* `parent_id` - The ID of the containing folder, if RBAC is enabled.
+* `labels` - The labels attached to the object. A string-to-string map.
+* `email` - The email of the service account.
+* `display_name` - The display name of the service account.

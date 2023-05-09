@@ -1,6 +1,7 @@
 # Resource: crafting_policy
 
-A `crafting_policy` resource attaches a policy to a folder or org.
+A `crafting_policy` resource attaches a policy to a folder or organization.
+RBAC must be enabled to use this resource.
 
 ## Example
 
@@ -15,8 +16,8 @@ resource "crafting_policy" "eng" {
 
 ## Arguments Reference
 
-* `policy` - (Required)(string) The policy definition.
-* `folder_id` - (Required)(string) The folder holding the policy. If unspecified, the policy is attached to org.
+* `policy` - (Required) The policy definition.
+* `folder_id` - (Required) The folder holding the policy. If unspecified, the policy is attached to the organization.
 
 ## Attributes Reference
 

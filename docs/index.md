@@ -1,24 +1,44 @@
 # Crafting Sandbox Provider
 
-Use the Crafting Sandbox Terraform Provider to interact with the many resources supported by Crafting Sandbox.
+Use the Crafting Sandbox Terraform Provider to manage your organization hosted by [Crafting Sandbox](https://www.crafting.dev).
+To learn more about Crafting Sandbox, please visit our [documents](https://docs.sandboxes.cloud).
 
 ## Example Usage
 
-```
+```terraform
 terraform {
   required_providers {
     crafting = {
-      source = "registry.terraform.io/crafting-dev/sandbox"
+      source = "crafting-dev/crafting"
     }
   }
 }
 
 provider "crafting" {
-  org = "org0"
-  server_url = "https://sandboxes.cloud"
+}
+```
+
+With specific organization name and self-hosted server URL:
+
+```terraform
+terraform {
+  required_providers {
+    crafting = {
+      source = "crafting-dev/crafting"
+    }
+  }
+}
+
+provider "crafting" {
+  org = "myorg"
+  server_url = "https://myorg.sandboxes.site"
 }
 ```
 
 ## Arguments Reference
-* `org` (Optional)(string) The name of the org. If unspecified, if running in a workspace, the current org is used.  Otherwise, select the only org available. If there are more than one orgs, it will report error.
-* `server_url` (Optional)(string) The full URL of the API server.
+
+* `org` (Optional) The name of the org.
+  By default, the provider will use the only org or the current one if running in a sandbox.
+  It must be specified if the user who runs terraform belongs to more than one organization.
+* `server_url` (Optional) The full URL of the API server. In most cases, this is automatically
+  detected, even for self-hosted organization.

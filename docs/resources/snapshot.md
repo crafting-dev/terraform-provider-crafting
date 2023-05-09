@@ -4,13 +4,12 @@ A `crafting_snapshot` creates a snapshot in the organization.
 
 ## Examples
 
-Workspace Snapshot
+Base Snapshot:
 
-``` terraform
+```terraform
 resource "crafting_snapshot" "base" {
   name = "base-dev-r1"
   type = "WORKSPACE"
-  folder = "shared"
   script = <<EOT
   #!/bin/bash
   apt update ...
@@ -21,11 +20,10 @@ resource "crafting_snapshot" "base" {
 
 Home Snapshot
 
-``` terraform
+```terraform
 resource "crafting_snapshot" "home" {
   name = "home-dev-r1"
   type = "HOME"
-  folder = "shared"
   includes = [
     ".bashrc",
     ".config",
@@ -40,7 +38,7 @@ resource "crafting_snapshot" "home" {
 }
 ```
 
-Dependency Snapshot
+Dependency Snapshot:
 
 ```terraform
 resource "crafting_snapshot" "mysql" {
@@ -50,11 +48,12 @@ resource "crafting_snapshot" "mysql" {
   workload = "mysql" # The target workload to take snapshot
   workspace = "hello" # The workspace to run the script
   script = <<EOT
+  ...
   EOT
 }
 ```
 
-Container Snapshot
+Container Snapshot (only for containers with persisted volumes):
 
 ```terraform
 resource "crafting_snapshot" "container" {
@@ -64,35 +63,36 @@ resource "crafting_snapshot" "container" {
   workload = "container1" # The target workload to take snapshot
   workspace = "hello" # The workspace to run the script
   script = <<EOT
+  ...
   EOT
 }
 ```
 
 ## Arguments Reference
-* `name` - (Required)(string) The name of the snapshot.
-* `folder` - (Optional)(string) The full path of the containing folder.
-* `type` - (Required)(string) The snapshot type, one of: `WORKSPACE`, `HOME`, `DEPENDENCY`, `CONTAINER`.
-* `sandbox_definition` - (Conditional)(string) Optional for `WORKSPACE`/`HOME`, required for `DEPENDENCY`/`CONTAINER`. The Sandbox  Definition to create a sandbox.
-* `workspace` - (Conditional)(string) Required if `sandbox_definition` and `script` are specified. The workspace to run the script.
-* `workload` - (Conditional)(string) Required for `DEPENDENCY`/`CONTAINER`, must be unspecified for `WORKSPACE`/`HOME`. The target workload to take snapshot from.
-* `script` - (Optional)(string) The script to run before taking a snapshot.
-* `base_snapshot` - (Conditional)(string) Only available for `HOME` snapshot without `sandbox_definition`. This is used to create the workspace.
-* `includes` - (Conditional)(list[string]) Only available for `HOME` snapshot to create the includes list (this will overwrite whatever exists in the workspace).
-* `excludes` - (Conditional)(list[string]) Only available for `HOME` snapshot to create the excludes list (this will overwrite whatever exists in the workspace).
+
+* `name` - (Required) The name of the snapshot.
+* `folder` - (Optional)(only available when RBAC is enabled) The full path of the containing folder.
+* `type` - (Required) The snapshot type, one of: `WORKSPACE`, `HOME`, `DEPENDENCY`, `CONTAINER`.
+* `sandbox_definition` - Optional for `WORKSPACE`/`HOME`, required for `DEPENDENCY`/`CONTAINER`. When specified, it's used to create a sandbox for building the snapshot.
+* `workspace` - Required if `script` is specified. The workspace to run the script.
+* `workload` - Required for `DEPENDENCY`/`CONTAINER`, must be unspecified for `WORKSPACE`/`HOME`. The target workload to take snapshot from.
+* `script` - (Optional) The script to run before taking a snapshot.
+* `base_snapshot` - Only available for `HOME` snapshot without `sandbox_definition`. This is used to create the workspace.
+* `includes` - Only available for `HOME` snapshot to create the includes list (this will overwrite whatever exists in the workspace).
+* `excludes` - Only available for `HOME` snapshot to create the excludes list (this will overwrite whatever exists in the workspace).
 
 ## Attributes Reference
 
-In addition to all arguments above, the following attributes are exported
+In addition to all arguments above, the following attributes are exported:
 
-* `id` - (string) The object ID.
-* `full_name` - (string) The full name of the object, including folders as path.
-* `owner` - (object) The owner of the object.
-    * `id` - (string) User ID.
-    * `name` - (string) The name (actually email) of the user.
-* `creator` - (object) The creator of the object:
-    * `id` - (string) User ID.
-    * `name` - (string) The name (actually email) of the user.
-* `org_id` - (string) The org ID this object belongs to.
-* `parent_id` - (string) The ID of the containing folder.
-* `labels`- (map[string,string]) The labels attached to the object.
-
+* `id` - The object ID.
+* `full_name` - The full name of the object, including folders as path, if RBAC is enabled.
+* `owner` - The owner of the object.
+    * `id` - User ID.
+    * `name` - The name (email) of the user.
+* `creator` - The creator of the object:
+    * `id` - User ID.
+    * `name` - The name (email) of the user.
+* `org_id` - The org ID this object belongs to.
+* `parent_id` - The ID of the containing folder, if RBAC is enabled.
+* `labels` - The labels attached to the object. A string-to-string map.
